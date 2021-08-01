@@ -1,0 +1,33 @@
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="secondary">
+    <ion-searchbar color="light" (ionChange)="onSearch($event)" placeholder="Search Service">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+  <ion-grid *ngIf=" categories$ |async as categories">
+    <!-- <div>
+      <div *ngFor="let catogory of categories">
+        <p>{{catogory.title}}</p>
+      </div>
+    </div> -->
+    <ion-row>
+      <ion-col class="ion-no-margin ion-no-padding" size="6" *ngFor="let catogory of categories">
+        <ion-card button color="light" (click)="navigateSub(catogory.id)">
+          <div class="number-card">
+            <ion-icon name="cog"></ion-icon>
+            <ion-text class="ion-no-margin ion-text-center">{{catogory.title}}</ion-text>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

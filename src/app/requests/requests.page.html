@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Requests</ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="secondary">
+    <ion-segment value="active" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="active">
+        <ion-label>Active</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="complete">
+        <ion-label>Completed</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+
+  <div id="container" *ngIf="this.active!=true && requests$">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-list *ngIf=" pendingRequests$ |async as pendingRequests">
+            <h4 *ngIf="pendingRequests!=null" class="ion-padding-horizontal"><b>Pending</b></h4>
+            <app-request-thumbnail [item]="pendingRequest" *ngFor="let pendingRequest of pendingRequests">
+            </app-request-thumbnail>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list *ngIf=" activeRequests$ |async as activeRequests">
+            <h4 class="ion-padding-horizontal"><b>Active</b></h4>
+            <app-request-thumbnail [item]="activeRequest" *ngFor="let activeRequest of activeRequests">
+            </app-request-thumbnail>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list *ngIf=" declinedRequests$ |async as declinedRequests">
+            <h4 class="ion-padding-horizontal"><b>Declined</b></h4>
+            <app-request-thumbnail [item]="declinedRequest" *ngFor="let declinedRequest of declinedRequests">
+            </app-request-thumbnail>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div id="container" *ngIf="this.active">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-list *ngIf="requestedPaymentRequest$ |async as requestedPayments">
+            <h4 class="ion-padding-horizontal"><b>Payment Requested</b></h4>
+            <app-request-thumbnail [item]="requestedPayment" *ngFor="let requestedPayment of requestedPayments">
+            </app-request-thumbnail>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list *ngIf=" unPaidRequests$ |async as unPaidRequests">
+            <h4 class="ion-padding-horizontal"><b>UnPaid</b></h4>
+            <app-request-thumbnail [item]="unPaidRequest" *ngFor="let unPaidRequest of unPaidRequests">
+            </app-request-thumbnail>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list *ngIf=" completedRequests$ |async as completedRequests">
+            <h4 class="ion-padding-horizontal"><b>Completed</b></h4>
+            <app-request-thumbnail [item]="completedRequest" *ngFor="let completedRequest of completedRequests">
+            </app-request-thumbnail>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

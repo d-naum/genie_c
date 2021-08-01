@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="navigateBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Create Request</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true">
+  <div #mapElement id="map" class="map" hidden="true"></div>
+  <div id="container">
+    <form [formGroup]="requestForm" (ngSubmit)="createWork(requestForm.value)">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h4 class="ion-padding-horizontal"><b>Add Details</b></h4>
+            <ion-item>
+              <ion-label position="floating">Description</ion-label>
+              <ion-textarea id="instructions" formControlName="instructions"></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Number of Units</ion-label>
+              <ion-input type="number" id="units" formControlName="units"></ion-input>
+            </ion-item>
+            <ion-list>
+              <ion-radio-group value="current">
+                <ion-list-header>
+                  <ion-label>Choose Location</ion-label>
+                </ion-list-header>
+            
+                <ion-item>
+                  <ion-label>Current</ion-label>
+                  <ion-radio slot="start" value="current"></ion-radio>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Other</ion-label>
+                  <ion-radio slot="start" value="other"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </ion-list>
+            <ion-item>
+              <ion-label position="floating">Address</ion-label>
+              <ion-input id="address" formControlName="address" readonly></ion-input>
+            </ion-item>
+            <ion-list>
+              <ion-radio-group value="home" id="address_type" formControlName="address_type">
+                <ion-list-header>
+                  <ion-label>Address Type</ion-label>
+                </ion-list-header>
+                <ion-item>
+                  <ion-label>Home</ion-label>
+                  <ion-radio slot="start" color="primary" value="home"></ion-radio>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Office</ion-label>
+                  <ion-radio slot="start" color="primary" value="office"></ion-radio>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Flat</ion-label>
+                  <ion-radio slot="start" color="primary" value="flat"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </ion-list>
+            <h4 class="ion-padding-horizontal"><b>Date & Time</b></h4>
+            <hr>
+            <ion-item>
+              <ion-label>Date</ion-label>
+              <ion-datetime id="date" formControlName="date" displayFormat="DD MMM YYYY" [min]="date" [max]="finalDate">
+              </ion-datetime>
+              <!-- <ion-input type="date" id="date" formControlName="date"></ion-input> -->
+            </ion-item>
+            <ion-item>
+              <ion-label>Starting Time</ion-label>
+              <ion-datetime #startValue displayFormat="h:mm A" minuteValues="0,15,30,45"></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-label>Ending Time</ion-label>
+              <ion-datetime #endValue displayFormat=" h:mm A" (ionChange)="timeValue(startValue.value,endValue.value)"
+                minuteValues="0,15,30,45"></ion-datetime>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-card class="accept-card ion-no-margin">
+        <ion-button color="secondary" class="ion-margin" expand="block" type="submit">Create</ion-button>
+      </ion-card>
+    </form>
+  </div>
+</ion-content>

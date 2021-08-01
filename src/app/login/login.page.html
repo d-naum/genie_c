@@ -1,0 +1,28 @@
+<ion-content class="ion-padding">
+  <div id="container">
+    <ion-grid>
+      <div class="logo">
+        <ion-img src="https://genie2serve.com/assets/images/vertical.jpg">
+        </ion-img>
+      </div>
+      <ion-text class="ion-text-center" color="dark">
+        <h3 class="title-bold">Login</h3>
+      </ion-text>
+      <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+        <ion-item>
+          <ion-label position="floating">Username</ion-label>
+          <ion-input id="email" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input id="password" formControlName="password" type="password"></ion-input>
+        </ion-item>
+        <ion-button color="secondary" type="submit" class="ion-margin-top" expand="block">Login</ion-button>
+      </form>
+      <div class="ion-text-center ion-margin-top">
+        <a>Forgot Password?</a>
+         <p>Don't have an account? <a [routerLink]="[ '/signup']">Sign Up</a></p>
+      </div>
+    </ion-grid>
+  </div>
+</ion-content>

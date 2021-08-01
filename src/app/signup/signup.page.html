@@ -1,0 +1,44 @@
+<ion-content class="ion-padding">
+  <div id="container">
+    <ion-grid>
+      <div class="logo">
+        <ion-img src="https://genie2serve.com/assets/images/vertical.jpg">
+        </ion-img>
+      </div>
+      <ion-text class="ion-text-center" color="dark">
+        <h3 class="title-bold">Sign Up</h3>
+      </ion-text>
+      <form [formGroup]="signUpForm" [PasswordMatchRevealed] (ngSubmit)="signUp(signUpForm.value)">
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input id="email" formControlName="email"></ion-input>
+        </ion-item>
+        <div *ngIf="signUpForm.get('email').hasError('email')">
+          <span class="error-text" >invalid email address</span>
+        </div>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input id="password" formControlName="password" type="password"></ion-input>
+        </ion-item>
+        <div *ngIf="signUpForm.get('password').hasError('minlength')">
+          <span class="error-text" >minimum 6 characters</span>
+        </div>
+        <ion-item>
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input id="confirmPassword" formControlName="confirmPassword" type="password"></ion-input>
+        </ion-item>
+        <div *ngIf="signUpForm.get('password').hasError('minlength')">
+          <span class="error-text" >minimum 6 characters</span>
+        </div>
+        <!-- have to place error -->
+        <div  *ngIf="signUpForm.errors?.passwordMatched">
+          <span class="error-text" >Fields doesn't match</span>
+        </div>
+        <ion-button color="secondary" type="submit" class="ion-margin-top" expand="block">Sign Up</ion-button>
+      </form>
+      <div class="ion-text-center ion-margin-top">
+        <p>Already have an Account? <a [routerLink]="[ '/login' ]">login</a></p>
+      </div>
+    </ion-grid>
+  </div>
+</ion-content>

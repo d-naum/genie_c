@@ -1,0 +1,13 @@
+.number-card{
+    min-height: 145px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.number-card>ion-icon{
+    font-size: 60px;
+}
+.number-card>h5{
+    padding-top:10px;
+}

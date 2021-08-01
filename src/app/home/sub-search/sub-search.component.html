@@ -1,0 +1,22 @@
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="navigateBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Sub Service</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content fullscreen>
+  <ion-list *ngIf=" subCategories$ |async as subCategories">
+    <ion-item button color="light" class="ion-margin" (click)="navigateSub(subCatogory.id)"
+      *ngFor="let subCatogory of subCategories">
+      <ion-label>
+        {{subCatogory.title}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

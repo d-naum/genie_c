@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div id="container">
+    <ion-grid>
+      <ion-row class="ion-justify-content-end ion-margin">
+        <ion-button [routerLink]="['/edit-profile']" size="small">edit</ion-button>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="4">
+          <div>
+            <ion-thumbnail class="profile-img">
+              <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+            </ion-thumbnail>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-text-center ">
+        <ion-col>
+          <div>
+            <h3>Roger Fedrer</h3>
+            <p class="ion-no-margin ">Faisalbad, PK</p>
+            <p class="ion-no-margin profile-rating"><b color="primary">( 4.9 <ion-icon name="star"></ion-icon> )</b>
+              200+ Reviews</p>
+            <p>Electician | Plumber| Mechanic</p>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <h1>Reviews</h1>
+            <ion-item>
+              <ion-avatar slot="start">
+                <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+              </ion-avatar>
+              <ion-label>
+
+                <h2>Finn <b color="primary">( 4.9 <ion-icon name="star"></ion-icon> )</b></h2>
+                <p>Listen, I've had a pretty messed up day...</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

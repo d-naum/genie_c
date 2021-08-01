@@ -1,0 +1,220 @@
+<ion-header>
+  <ion-toolbar color="primary" *ngIf="request$ |async as myRequest">
+    <ion-buttons slot="start">
+      <ion-button (click)="navigateBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Request# {{myRequest.id}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+
+  <div id="container">
+    <div *ngIf="request$ |async as myOtherRequest">
+      <div *ngIf="myOtherRequest.payment_status==='requested'">
+        <ion-grid class="ion-margin" *ngIf="requestedPayment$ |async as myRequestedPayment">
+          <h4 class="ion-padding-horizontal"><b>Payment Summery</b></h4>
+          <hr>
+          <ion-row class="ion-justify-content-between ">
+            <ion-col size="6">
+              <div>
+                <p class="ion-no-margin"><b>Amount</b></p>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="ion-float-end">
+                <p class="ion-no-margin">{{myRequestedPayment.amount}} (PKR)</p>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-between ">
+            <ion-col size="6">
+              <div>
+                <p class="ion-no-margin"><b>workerId</b></p>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="ion-float-end">
+                <p class="ion-no-margin">{{myRequestedPayment.worker_id}}</p>
+              </div>
+            </ion-col>
+          </ion-row>
+          <hr>
+          <ion-button color="secondary" expand="block" (click)="fulfillPayment()">Accept Payment</ion-button>
+          <ion-row>
+            <p>Make sure you paid the amount before accepting</p>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <div *ngIf="myOtherRequest.payment_status!='requested'">
+        <ion-grid class="ion-margin" *ngIf="request$ |async as request">
+          <h4 class="ion-padding-horizontal"><b>Service Summery</b></h4>
+          <hr>
+          <ion-row class="ion-justify-content-between ">
+            <ion-col size="6">
+              <div>
+                <p class="ion-no-margin"><b>Worker Name</b></p>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="ion-float-end">
+                <p class="ion-no-margin">{{request.worker_name}}</p>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-between ">
+            <ion-col size="6">
+              <div>
+                <p class="ion-no-margin"><b>Service</b></p>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="ion-float-end">
+                <p class="ion-no-margin">{{request.service_title}}</p>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-between">
+            <ion-col size="6">
+              <div>
+                <p class="ion-no-margin"><b>Sub Service</b></p>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="ion-float-end">
+                <p class="ion-no-margin">{{request.sub_service_title}}
+                </p>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <p class="ion-no-margin"><b>Description</b></p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <p class="ion-no-margin">{{request.instructions}}
+              </p>
+            </ion-col>
+          </ion-row>
+          <h4 class="ion-padding-horizontal"><b>Date& Time</b></h4>
+          <hr>
+          <ion-row class="ion-justify-content-between ">
+            <ion-col size="6">
+              <div>
+                <p class="ion-no-margin"><b>Date</b></p>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="ion-float-end">
+                <p class="ion-no-margin">{{request.date |date}}</p>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-between">
+            <ion-col size="6">
+              <div>
+                <p class="ion-no-margin"><b>Time</b></p>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="ion-float-end">
+                <p class="ion-no-margin">
+                  {{request.time}}
+                </p>
+              </div>
+            </ion-col>
+          </ion-row>
+          <h4 class="ion-padding-horizontal"><b>Address Details</b></h4>
+          <hr>
+          <ion-row class="ion-justify-content-between ">
+            <ion-col size="6">
+              <div>
+                <p class="ion-no-margin"><b>No of Units</b></p>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="ion-float-end">
+                <p class="ion-no-margin">{{request.units}}</p>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-between">
+            <ion-col size="6">
+              <div>
+                <p class="ion-no-margin"><b>Address Type</b></p>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="ion-float-end">
+                <p class="ion-no-margin">
+                  {{request.address_type}}
+                </p>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <p class="ion-no-margin"><b>Address</b></p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <p class="ion-no-margin">
+                {{request.address}}
+              </p>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+        <ion-grid class="ion-margin" *ngIf="review$ |async as review">
+          <div *ngIf="review.status===0">
+            <h4 class="ion-padding-horizontal"><b>Review</b></h4>
+            <hr>
+            <ion-row class="ion-justify-content-between ">
+              <ion-col size="6">
+                <div>
+                  <p class="ion-no-margin"><b>Rating</b></p>
+                </div>
+              </ion-col>
+              <ion-col size="6">
+                <div class="ion-float-end">
+                  <p class="ion-no-margin">{{review.item?.rating}}</p>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p class="ion-no-margin"><b>Feedback</b></p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p class="ion-no-margin">{{review.item?.feedback}}
+                </p>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-grid>
+      </div>
+    </div>
+
+
+  </div>
+
+</ion-content>
+<ion-card class="accept-card ion-no-margin" *ngIf="request$ |async as otherRequest">
+  <div *ngIf="otherRequest.status===0 || otherRequest.status===1">
+    <ion-button class="ion-margin" color="danger" (click)="cancel()" expand="block">Cancel</ion-button>
+  </div>
+  <div *ngIf="otherRequest.status===2 && otherRequest.payment_status==='paid'">
+    <div *ngIf="review$ |async as myReview">
+      <ion-button color="secondary" *ngIf="myReview.status===1" class="ion-margin" (click)="review()" expand="block">
+        Rate Service
+      </ion-button>
+    </div>
+
+  </div>
+</ion-card>

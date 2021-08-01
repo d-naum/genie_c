@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Payments</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngIf=" payments$ |async as payments">
+          <ion-card color="light" *ngFor="let payment of payments">
+            <ion-card-header>
+              <ion-grid class="ion-no-padding">
+                <ion-row class="ion-align-items-center">
+                  <ion-col size="6">
+                    <ion-card-subtitle>{{payment?.id}}</ion-card-subtitle>
+                  </ion-col>
+                  <ion-col size="6" class="ion-text-end">
+                    <!-- <ion-badge color="primary">Status</ion-badge> -->
+                  </ion-col>
+                </ion-row>
+                <!-- <ion-row>
+                  <ion-col>
+                    <ion-card-title>Electrician</ion-card-title>
+                  </ion-col>
+                </ion-row> -->
+              </ion-grid>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-grid class="ion-no-padding">
+                <ion-row class="ion-align-items-baseline">
+                  <ion-col size="6">
+                    <h3 color="primary">{{payment?.updated_at| date}}</h3>
+                  </ion-col>
+                  <ion-col size="6" class="ion-text-end">
+                    <h1 color="primary">{{payment?.amount }}(PKR)</h1>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

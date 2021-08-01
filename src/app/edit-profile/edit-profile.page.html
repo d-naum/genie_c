@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Edit</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-list *ngIf="profile$ | async as profile">
+            <h3>Name</h3>
+            <form [formGroup]="editForm" (ngSubmit)="changeName(editForm.value)">
+              <ion-item class="ion-margin-bottom">
+                <ion-label position="floating">Full Name</ion-label>
+                <ion-input id="name" formControlName="name"></ion-input>
+              </ion-item>
+              <ion-button type="submit" color="secondary" class="ion-margin-bottom" expand="block">change</ion-button>
+            </form>
+          </ion-list>
+          <ion-list>
+            <h3>Password</h3>
+            <form>
+              <ion-item class="ion-margin-bottom">
+                <ion-label position="floating">Current Password</ion-label>
+                <ion-input type="password"></ion-input>
+              </ion-item>
+              <ion-item class="ion-margin-bottom">
+                <ion-label position="floating">New Password</ion-label>
+                <ion-input type="password"></ion-input>
+              </ion-item>
+              <ion-button color="secondary" class="ion-margin-bottom" expand="block">change</ion-button>
+            </form>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

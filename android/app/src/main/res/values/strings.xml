@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">customer</string>
+    <string name="title_activity_main">customer</string>
+    <string name="package_name">com.genie2serve.customer</string>
+    <string name="custom_url_scheme">com.genie2serve.customer</string>
+</resources>
